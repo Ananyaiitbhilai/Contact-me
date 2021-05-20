@@ -1,37 +1,37 @@
-document.getElementById('reviewInputForm').addEventListener('submit', savereview);
+document.getElementById('reviewInputForm').addEventListener('submit', saveReview);
 
-function savereview(e) {
-  var issueDesc = document.getElementById('issueDescInput').value;
-  var issueSeverity = document.getElementById('issueSeverityInput').value;
-  var issueAssignedTo = document.getElementById('issueAssignedToInput').value;
-  var issueemail = document.getElementById('emailInput').value;
-  var issueId = chance.guid();
+function saveReview(e) {
+  var reviewDesc = document.getElementById('DescInput').value;
+  var reviewrating = document.getElementById('ratinginput').value;
+  var reviewname = document.getElementById('name').value;
+  var reviewemail = document.getElementById('emailinput').value;
+  var reviewId = chance.guid();
+  
+
+  var review = {
+    id: reviewId,
+    description: reviewDesc,
+    rating: reviewrating,
+    name: reviewname,
+    email: reviewemail
  
-
-  var issue = {
-    id: issueId,
-    description: issueDesc,
-    severity: issueSeverity,
-    assignedTo: issueAssignedTo,
-    email: issueemail,
-    
   }
 
-  
+
     var issues = JSON.parse(localStorage.getItem('issues'));
-    issues.push(issue);
+    issues.push(review);
     localStorage.setItem('issues', JSON.stringify(issues));
   
 
   document.getElementById('reviewInputForm').reset();
 
-  fetchreviews();
+  fetchReviews();
 
   e.preventDefault();
 }
 
 
-function deletereview(id) {
+function deleteReview(id) {
   var issues = JSON.parse(localStorage.getItem('issues'));
 
   for (var i = 0; i < issues.length; i++) {
@@ -42,30 +42,30 @@ function deletereview(id) {
 
   localStorage.setItem('issues', JSON.stringify(issues));
 
-  fetchreviews();
+  fetchReviews();
 }
 
-function fetchreviews() {
+function fetchReviews() {
   var issues = JSON.parse(localStorage.getItem('issues'));
-  var reviewsListe = document.getElementById('reviewsList');
+  var issuesListe = document.getElementById('reviewsList');
 
-  issuesList.innerHTML = '';
+  issuesListe.innerHTML = '';
 
   for (var i = 0; i < issues.length; i++) {
     var id = issues[i].id;
     var desc = issues[i].description;
-    var severity = issues[i].severity;
-    var assignedTo = issues[i].assignedTo;
-    var email = issues[i].email;
-    var status = issues[i].status;
+    var rating_review = issues[i].rating;
+    var name_review = issues[i].name;
+    var email_review = issues[i].email;
+    
 
-    reviewsList.innerHTML +=   '<div class="well">'+
+    issuesListe.innerHTML +=   '<div class="well">'+
                               '<h6> User id: ' + id + '</h6>'+
                               '<h3>' + desc + '</h3>'+
-                              '<p>' + email + '</p>'+
-                              '<p><span class="glyphicon glyphicon-time"></span> ' + severity + '</p>'+
-                              '<p><span class="glyphicon glyphicon-user"></span> ' + assignedTo + '</p>'+
-                              '<a href="#" onclick="deletereview(\''+id+'\')" class="btn btn-danger">Delete</a>'+
+                              '<p> ' + email_review + '</p>'+
+                              '<p><span class="glyphicon glyphicon-time"></span> ' + rating_review + '</p>'+
+                              '<p><span class="glyphicon glyphicon-user"></span> ' + name_review + '</p>'+
+                              '<a href="#" onclick="deleteReview(\''+id+'\')" class="btn btn-danger">Delete</a>'+
                               '</div>';
   }
 }
