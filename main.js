@@ -4,6 +4,7 @@ function saveIssue(e) {
   var issueDesc = document.getElementById('issueDescInput').value;
   var issueSeverity = document.getElementById('issueSeverityInput').value;
   var issueAssignedTo = document.getElementById('issueAssignedToInput').value;
+  var issueemail = document.getElementById('emailInput').value;
   var issueId = chance.guid();
   var issueStatus = 'Open';
 
@@ -12,6 +13,7 @@ function saveIssue(e) {
     description: issueDesc,
     severity: issueSeverity,
     assignedTo: issueAssignedTo,
+    email: issueemail,
     status: issueStatus
   }
 
@@ -71,12 +73,14 @@ function fetchIssues() {
     var desc = issues[i].description;
     var severity = issues[i].severity;
     var assignedTo = issues[i].assignedTo;
+    var email = issues[i].email;
     var status = issues[i].status;
 
     issuesList.innerHTML +=   '<div class="well">'+
                               '<h6> User id: ' + id + '</h6>'+
                               '<p><span class="label label-info">' + status + '</span></p>'+
                               '<h3>' + desc + '</h3>'+
+                              '<p>' + email + '</p>'+
                               '<p><span class="glyphicon glyphicon-time"></span> ' + severity + '</p>'+
                               '<p><span class="glyphicon glyphicon-user"></span> ' + assignedTo + '</p>'+
                               '<a href="#" onclick="setStatusClosed(\''+id+'\')" class="btn btn-warning">Thanks!</a> '+
