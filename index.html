@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>review</title>
+    <title>Review</title>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto+Condensed'><link rel="stylesheet" href="./style.css">
   </head>
-  <body onload="fetchreviews()">
+  <body onload="fetchReviews()">
     <div class="background">
       <div class="container">
         <div class="screen">
@@ -45,16 +45,16 @@
               <div class="app-form">
                 <div class="app-form-group">
                   <input 
-                  type="text" class="app-form-control" placeholder="NAME" id="issueAssignedToInput" required>
+                  type="text" class="app-form-control" placeholder="NAME" id="name" required>
                 </div>
                 <div class="app-form-group">
-                  <input class="app-form-control" type="email" id="emailInput" placeholder="EMAIL" required>
+                  <input class="app-form-control" type="email"  id="emailinput" placeholder="EMAIL" required>
                 </div>
                 <div class="app-form-group">
                   <input class="app-form-control" placeholder="CONTACT NO" value="Rating" readonly>
                 </div>
                 <div class="form-group">
-                <select id="issueSeverityInput" class="form-control" required>
+                <select id="ratinginput" class="form-control" required>
                   <option value="⭐">⭐</option>
                   <option value="⭐⭐">⭐⭐</option>
                   <option value="⭐⭐⭐">⭐⭐⭐</option>
@@ -63,7 +63,7 @@
 
                 </select></div>
                 <div class="app-form-group message">
-                  <input type="text" class="app-form-control" id="issueDescInput" placeholder="MESSAGE" required>
+                  <input type="text" class="app-form-control" id="DescInput" placeholder="MESSAGE" required>
                 </div>
                 <div class="app-form-group buttons">
                   
