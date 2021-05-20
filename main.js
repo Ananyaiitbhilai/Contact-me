@@ -1,12 +1,12 @@
-document.getElementById('issueInputForm').addEventListener('submit', saveIssue);
+document.getElementById('reviewInputForm').addEventListener('submit', savereview);
 
-function saveIssue(e) {
+function savereview(e) {
   var issueDesc = document.getElementById('issueDescInput').value;
   var issueSeverity = document.getElementById('issueSeverityInput').value;
   var issueAssignedTo = document.getElementById('issueAssignedToInput').value;
   var issueemail = document.getElementById('emailInput').value;
   var issueId = chance.guid();
-  var issueStatus = 'Open';
+ 
 
   var issue = {
     id: issueId,
@@ -14,41 +14,24 @@ function saveIssue(e) {
     severity: issueSeverity,
     assignedTo: issueAssignedTo,
     email: issueemail,
-    status: issueStatus
+    
   }
 
-  if (localStorage.getItem('issues') == null) {
-    var issues = [];
-    issues.push(issue);
-    localStorage.setItem('issues', JSON.stringify(issues));
-  } else {
+  
     var issues = JSON.parse(localStorage.getItem('issues'));
     issues.push(issue);
     localStorage.setItem('issues', JSON.stringify(issues));
-  }
+  
 
-  document.getElementById('issueInputForm').reset();
+  document.getElementById('reviewInputForm').reset();
 
-  fetchIssues();
+  fetchreviews();
 
   e.preventDefault();
 }
 
-function setStatusClosed(id) {
-  var issues = JSON.parse(localStorage.getItem('issues'));
 
-  for (var i = 0; i < issues.length; i++) {
-    if (issues[i].id == id) {
-      issues[i].status = 'Closed';
-    }
-  }
-
-  localStorage.setItem('issues', JSON.stringify(issues));
-
-  fetchIssues();
-}
-
-function deleteIssue(id) {
+function deletereview(id) {
   var issues = JSON.parse(localStorage.getItem('issues'));
 
   for (var i = 0; i < issues.length; i++) {
@@ -59,12 +42,12 @@ function deleteIssue(id) {
 
   localStorage.setItem('issues', JSON.stringify(issues));
 
-  fetchIssues();
+  fetchreviews();
 }
 
-function fetchIssues() {
+function fetchreviews() {
   var issues = JSON.parse(localStorage.getItem('issues'));
-  var issuesListe = document.getElementById('issuesList');
+  var reviewsListe = document.getElementById('reviewsList');
 
   issuesList.innerHTML = '';
 
@@ -76,15 +59,13 @@ function fetchIssues() {
     var email = issues[i].email;
     var status = issues[i].status;
 
-    issuesList.innerHTML +=   '<div class="well">'+
+    reviewsList.innerHTML +=   '<div class="well">'+
                               '<h6> User id: ' + id + '</h6>'+
-                              '<p><span class="label label-info">' + status + '</span></p>'+
                               '<h3>' + desc + '</h3>'+
                               '<p>' + email + '</p>'+
                               '<p><span class="glyphicon glyphicon-time"></span> ' + severity + '</p>'+
                               '<p><span class="glyphicon glyphicon-user"></span> ' + assignedTo + '</p>'+
-                              '<a href="#" onclick="setStatusClosed(\''+id+'\')" class="btn btn-warning">Thanks!</a> '+
-                              '<a href="#" onclick="deleteIssue(\''+id+'\')" class="btn btn-danger">Sorry!</a>'+
+                              '<a href="#" onclick="deletereview(\''+id+'\')" class="btn btn-danger">Delete</a>'+
                               '</div>';
   }
 }
