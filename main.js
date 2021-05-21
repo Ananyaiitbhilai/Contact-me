@@ -62,7 +62,7 @@ function fetchReviews() {
     issuesListe.innerHTML +=   '<div class="well">'+
                               '<h6> User id: ' + id + '</h6>'+
                               '<h3>' + desc + '</h3>'+
-                              '<p> ' + email_review + '</p>'+
+                              '<p><span class="glyphicon glyphicon-envelope"></span> ' + email_review + '</p>'+
                               '<p><span class="glyphicon glyphicon-star"></span> ' + rating_review + '</p>'+
                               '<p><span class="glyphicon glyphicon-user"></span> ' + name_review + '</p>'+
                               '<a href="#" onclick="deleteReview(\''+id+'\')" class="btn btn-danger">Delete</a>'+
